@@ -11,9 +11,10 @@
         <maven.compiler.target>14</maven.compiler.target>
     </properties>
     
-    <!-- Copies the XSD file to the correct target dir: -->
+    
     <build>
         <resources>
+            <!-- Copy the XSD file to the correct target dir: -->
             <resource>
                 <directory>src/main/java</directory>
                 <excludes>
@@ -21,6 +22,25 @@
                 </excludes>
             </resource>
         </resources>
+        
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>org.ajames.xmlhandler.XmlHandler</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+  
     </build>
     <name>XmlValidationDemo</name>
 </project>
